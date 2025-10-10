@@ -55,11 +55,18 @@ const Navbar = () => {
           }}
         >
           Settings
+        </Link> <Link 
+          to="/users"
+          style={{ 
+            color: isDark ? "#fff" : "#000",
+            textDecoration: "none"
+          }}
+        >
+          Users
         </Link>
       </div>
 
       <div style={{ display: "flex", gap: "15px", alignItems: "center" }}>
-        {/* Theme Toggle Button */}
         <button 
           onClick={toggleTheme}
           style={{
@@ -80,7 +87,6 @@ const Navbar = () => {
           <span>{isDark ? "Light" : "Dark"}</span>
         </button>
 
-        {/* Logout Button */}
         <button 
           onClick={handleLogout}
           style={{
@@ -105,31 +111,3 @@ export default Navbar;
 
 
 
-// // src/components/layout/Navbar.tsx
-// import React from "react";
-// import { Link, useNavigate } from "react-router-dom";
-// const Navbar = () => {
-//   const navigate = useNavigate();
-
-//   const handleLogout = () => {
-//     localStorage.removeItem("user"); 
-//     navigate("/login");              
-//   };
-
-//   return (
-//     <nav style={{
-//       display: "flex",
-//       gap: "20px",
-//       padding: "10px 20px",
-//       backgroundColor: "#eee",
-//       alignItems: "center"
-//     }}>
-//       <Link to="/dashboard">Dashboard</Link>
-//       <Link to="/boardDetails">Board details</Link>
-//       <Link to="/settings">Settings</Link>
-//       <button onClick={handleLogout}>Logout</button>
-//     </nav>
-//   );
-// };
-
-// export default Navbar;

@@ -6,7 +6,7 @@ import Settings from "./pages/Settings";
 import MainLayout from "./components/layout/MainLayout";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
-
+import Users from "./pages/Users"
 // Check if user is logged in
 const isLoggedIn = !!localStorage.getItem("user");
 
@@ -75,6 +75,17 @@ const routes: AppRoute[] = [
     ),
     protected: true,
   },
+{
+    path: "/users",
+    element: (
+      // <ProtectedRoute>
+        <MainLayout>
+          <Users />
+        </MainLayout>
+      // </ProtectedRoute>
+    ),
+    protected: true,
+  },
 
   { path: "*", element: <Navigate to="/login" replace /> },
 ];
@@ -88,42 +99,3 @@ export default routes;
 
 
 
-// import React from "react";
-// import { Navigate } from "react-router-dom";
-// import Dashboard from "./pages/Dashboard";
-// import BoardDetails from "./pages/BoardDetails";
-// import Settings from "./pages/Settings";
-// import MainLayout from "./components/layout/MainLayout";
-// import Login from "./pages/Login";
-// import SignUp from "./pages/SignUp";
-// // const isLoggedIn = !!localStorage.getItem("user");
-
-// interface AppRoute {
-//   path: string;
-//   element: React.ReactNode;
-//   protected?: boolean;
-// }
-
-// const routes: AppRoute[] = [
-//   { path: "/login", element: <Login />, protected: false },
-//   {path:"/signUp",element:<SignUp/>},
-//   {
-//     path: "/",
-//     element:  <MainLayout><Dashboard /></MainLayout>,
-//     protected: true,
-//   },
-//   {
-//     path: "/board/:boardId",
-//     element:<MainLayout><BoardDetails /></MainLayout>,
-//     protected: true,
-//   },
-//   {
-//     path: "/settings",
-//     element: <MainLayout><Settings /></MainLayout>,
-//     protected: true,
-//   },
-//     { path: "*", element: <Navigate to="/login" /> },
-
-// ];
-
-// export default routes;
