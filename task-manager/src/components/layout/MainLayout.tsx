@@ -1,4 +1,3 @@
-// src/components/layout/MainLayout.tsx
 import React, { useContext } from "react";
 import type { ReactNode } from "react";
 import Navbar from "./NavBar"

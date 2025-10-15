@@ -1,4 +1,3 @@
-// src/components/layout/Navbar.tsx
 import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ThemeContext } from "../../context/ThemeContext";
@@ -62,7 +61,16 @@ const Navbar = () => {
             textDecoration: "none"
           }}
         >
-          Users
+          User Form
+        </Link>
+        <Link 
+          to="/userdetails"
+          style={{ 
+            color: isDark ? "#fff" : "#000",
+            textDecoration: "none"
+          }}
+        >
+          User Details
         </Link>
       </div>
 

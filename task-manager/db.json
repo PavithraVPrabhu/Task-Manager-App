@@ -1,0 +1,88 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "prince",
+      "email": "alice@example.com",
+      "phone": "1234567890",
+      "address": "City A"
+    },
+    {
+      "id": "2",
+      "name": "Bob",
+      "email": "bob@example.com",
+      "phone": "9876543211",
+      "address": "City B"
+    },
+    {
+      "id": "3",
+      "name": "Charlie",
+      "email": "charlie@example.com",
+      "phone": "1112223333",
+      "address": "City B"
+    },
+    {
+      "id": "4",
+      "name": "David",
+      "email": "david@example.com",
+      "phone": "4445556666",
+      "address": "City D"
+    },
+    {
+      "id": "510b",
+      "name": "pavithra",
+      "email": "pavithra@gmail.com",
+      "phone": "7865678292",
+      "address": "sample"
+    },
+    {
+      "id": "89c7",
+      "name": "pranav",
+      "email": "pavi@gmail.com",
+      "phone": "4378883284",
+      "address": "sample"
+    },
+    {
+      "id": "1ee8",
+      "name": "pavithra v",
+      "email": "pavi@gmail.com",
+      "phone": "9873248749",
+      "address": "testing"
+    },
+    {
+      "id": "2662",
+      "name": "sample",
+      "email": "test@gmail.com",
+      "phone": "6754789238",
+      "address": "test"
+    },
+    {
+      "id": "86a3",
+      "name": "Riya",
+      "email": "riya3@gmail.com",
+      "phone": "9876747890",
+      "address": "cross road 11"
+    },
+    {
+      "id": "77a2",
+      "name": "test",
+      "email": "test@gmail.com",
+      "phone": "8765748921",
+      "address": "test"
+    },
+    {
+      "id": "3edc",
+      "name": "asima",
+      "email": "asima11@gmail.com",
+      "phone": "4672819087",
+      "address": "test"
+    },
+    {
+      "id": "ffa2",
+      "name": "test",
+      "email": "test@gmail.com",
+      "phone": "8564746278",
+      "address": "test"
+    }
+  ]
+}

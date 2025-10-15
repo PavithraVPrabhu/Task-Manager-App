@@ -1,4 +1,3 @@
-// src/pages/Dashboard.tsx
 import React, { useContext } from "react";
 import { ThemeContext } from "../context/ThemeContext";
 import { Card, CardContent, Typography } from "@mui/material";
