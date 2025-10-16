@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { ThemeContext } from '../context/ThemeContext'
+import DragAndDrop from '../components/layout/DragAndDrop'
 const BoardDetails = () => {
 
   const {state:themeState,dispatch:themeDispatch}=useContext(ThemeContext)
@@ -14,9 +15,8 @@ const BoardDetails = () => {
         padding: "20px",
         width: "95vw"
       }}>
-      <h1>Board Details</h1>
-      <p>Current theme: {themeState.theme}</p>
-      <button onClick={toggleTheme}>Toggle Theme</button>
+      <h2><b>Board Details</b></h2>
+      <DragAndDrop></DragAndDrop>
     </div>
   )
 }

@@ -12,16 +12,13 @@ import UserDetails from "./pages/UserDetails"
 import type { UserFormData } from "./types/UserFormDataType";
 
 const AppRoutes: React.FC = () => {
-  // ✅ Hook is now inside a React component — valid
   const [submittedUsers, setSubmittedUsers] = useState<UserFormData[]>([]);
   const isLoggedIn = !!localStorage.getItem("user");
 
-  // Function to add new users
   const addNewUser = (user: UserFormData) => {
     setSubmittedUsers((prev) => [...prev, user]);
   };
 
-  // All route definitions
   const routes = [
     {
       path: "/login",
@@ -36,7 +33,9 @@ const AppRoutes: React.FC = () => {
       element: isLoggedIn ? (
         <Navigate to="/dashboard" replace />
       ) : (
+        <MainLayout>
         <UserDetails newUsers={submittedUsers} />
+        </MainLayout>
       ),
     },
     {
@@ -44,7 +43,9 @@ const AppRoutes: React.FC = () => {
       element: isLoggedIn ? (
         <Navigate to="/dashboard" replace />
       ) : (
+         <MainLayout>
         <UserAppForm addNewUser={addNewUser} />
+         </MainLayout>
       ),
     },
     {
@@ -52,7 +53,9 @@ const AppRoutes: React.FC = () => {
       element: isLoggedIn ? (
         <Navigate to="/dashboard" replace />
       ) : (
+        <MainLayout>
         <UserAppForm />
+        </MainLayout>
       ),
     },
     {
@@ -87,10 +90,9 @@ const AppRoutes: React.FC = () => {
         </MainLayout>
       ),
     },
-    { path: "*", element: <Navigate to="/login" replace /> },
+    // { path: "*", element: <Navigate to="/login" replace /> },
   ];
 
-  // ✅ useRoutes must be called inside a component
   return useRoutes(routes);
 };
 

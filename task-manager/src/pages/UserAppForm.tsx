@@ -47,16 +47,17 @@ const UserAppForm: React.FC<UserAppFormProps> = ({ addNewUser }) => {
         alert("User added successfully!");
         addNewUser?.(newUser);
       }
-      navigate("/");
+      navigate("/userdetails");
     } catch {
       alert("Something went wrong. Please try again.");
     }
   };
 
   return (
+    <div style={{width: "95vw"}}>
     <Paper elevation={3} style={{ padding: "16px", maxWidth: "400px", margin: "auto" }}>
       <form onSubmit={handleSubmit}>
-        <h2>{isEditMode ? "Edit User" : "Add New User"}</h2>
+        <h2><b>{isEditMode ? "Edit User" : "Add New User"}</b></h2>
 
         <TextField
           name="name"
@@ -98,6 +99,7 @@ const UserAppForm: React.FC<UserAppFormProps> = ({ addNewUser }) => {
         {error && <p style={{ color: "red" }}>Error: {error}</p>}
       </form>
     </Paper>
+    </div>
   );
 };
 

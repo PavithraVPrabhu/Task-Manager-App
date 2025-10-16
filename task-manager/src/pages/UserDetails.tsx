@@ -33,8 +33,8 @@ const UserDetails: React.FC<UserDetailsProps> = ({ newUsers }) => {
   }, []);
 
   return (
-    <div style={{ padding: 20, fontFamily: "Arial, sans-serif" }}>
-      <h1>User Details</h1>
+    <div style={{ padding: 20, fontFamily: "Arial, sans-serif" ,width: "95vw"}}>
+      <h2><b>User Details</b></h2>
       {loading && <p>Loading...</p>}
       {error && <p style={{ color: "red" }}>Error: {error}</p>}
       {!loading && !error && (
