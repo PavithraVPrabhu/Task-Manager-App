@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import type {Column as ColumnType } from '../../types/ColumnTypes';
-import type {Task} from '../../types/TaskType'
+import type { Column as ColumnType } from '../../types/ColumnTypes';
+import type { Task } from '../../types/TaskType'
 import { Column } from "../../components/layout/Columns"
-import { DndContext} from '@dnd-kit/core';
-import type {DragEndEvent} from '@dnd-kit/core';
+import { DndContext } from '@dnd-kit/core';
+import type { DragEndEvent } from '@dnd-kit/core';
+
 const COLUMNS: ColumnType[] = [
   { id: 'TODO', title: 'To Do' },
   { id: 'IN_PROGRESS', title: 'In Progress' },
@@ -34,13 +35,7 @@ const INITIAL_TASKS: Task[] = [
     title: 'Testing',
     description: 'Write unit tests for core functionality',
     status: 'DONE',
-  },
-   {
-    id: '4',
-    title: 'UAT',
-    description: 'Write unit tests for core functionality',
-    status: 'DONE',
-  },
+  }
 ];
 
 export default function App() {
@@ -58,9 +53,9 @@ export default function App() {
       tasks.map((task) =>
         task.id === taskId
           ? {
-              ...task,
-              status: newStatus,
-            }
+            ...task,
+            status: newStatus,
+          }
           : task,
       ),
     );

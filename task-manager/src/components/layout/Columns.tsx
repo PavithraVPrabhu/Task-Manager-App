@@ -6,7 +6,7 @@ import { TaskCard } from "../layout/TaskCard";
 
 type ColumnProps = {
   column: ColumnType;
-  tasks: Task[]; 
+  tasks: Task[];
 };
 
 export function Column({ column, tasks }: ColumnProps) {

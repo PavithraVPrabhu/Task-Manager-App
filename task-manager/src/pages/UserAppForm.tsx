@@ -54,51 +54,55 @@ const UserAppForm: React.FC<UserAppFormProps> = ({ addNewUser }) => {
   };
 
   return (
-    <div style={{width: "95vw"}}>
-    <Paper elevation={3} style={{ padding: "16px", maxWidth: "400px", margin: "auto" }}>
-      <form onSubmit={handleSubmit}>
-        <h2><b>{isEditMode ? "Edit User" : "Add New User"}</b></h2>
+    <div style={{ width: "95vw" }}>
+      <Paper elevation={3} style={{ padding: "16px", maxWidth: "400px", margin: "auto" }}>
+        <form onSubmit={handleSubmit}>
+          <h2><b>{isEditMode ? "Edit User" : "Add New User"}</b></h2>
 
-        <TextField
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          placeholder="Name"
-          fullWidth
-          margin="normal"
-        />
-        <TextField
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          placeholder="Email"
-          fullWidth
-          margin="normal"
-        />
-        <TextField
-          name="phone"
-          value={formData.phone}
-          onChange={handleChange}
-          placeholder="Phone"
-          fullWidth
-          margin="normal"
-        />
-        <TextField
-          name="address"
-          value={formData.address}
-          onChange={handleChange}
-          placeholder="Address"
-          fullWidth
-          margin="normal"
-        />
+          <TextField
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            placeholder="Name"
+            fullWidth
+            
+            margin="normal"
+    
 
-        <Button type="submit" variant="contained" color="primary" disabled={loading}>
-          {isEditMode ? (loading ? "Updating..." : "Update") : loading ? "Submitting..." : "Submit"}
-        </Button>
+          />
+          <TextField
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="Email"
+            fullWidth
+            margin="normal"
+          />
+          <TextField
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            placeholder="Phone"
+            fullWidth
+            margin="normal"
+          />
+          <TextField
+            name="address"
+            value={formData.address}
+            onChange={handleChange}
+            placeholder="Address"
+            fullWidth
+            margin="normal"
 
-        {error && <p style={{ color: "red" }}>Error: {error}</p>}
-      </form>
-    </Paper>
+          />
+
+          <Button type="submit" variant="contained" color="primary" disabled={loading}>
+            {isEditMode ? (loading ? "Updating..." : "Update") : loading ? "Submitting..." : "Submit"}
+          </Button>
+
+          {error && <p style={{ color: "red" }}>Error: {error}</p>}
+        </form>
+      </Paper>
     </div>
   );
 };
