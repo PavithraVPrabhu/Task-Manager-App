@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import type { ReactNode } from "react";
+import  { useContext } from "react";
+// import type { ReactNode } from "react";
 import { Outlet } from "react-router-dom";
 import Navbar from "./NavBar"
 import { ThemeContext } from "../../context/ThemeContext";

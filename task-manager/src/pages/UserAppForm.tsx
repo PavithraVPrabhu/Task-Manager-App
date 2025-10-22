@@ -4,13 +4,13 @@ import type { UserFormData } from "../types/UserFormDataType";
 import { Button, TextField, Paper } from "@mui/material";
 import { useApi } from "../hooks/useApi";
 import { useUserContext } from "../context/UserContext";
-
+import {useUSPhoneFormat} from "../hooks/useUSPhoneFormat"
 const UserAppForm: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const isEditMode = Boolean(id);
   const { addUser, updateUser, refreshUsers } = useUserContext();
-
+  const { formatPhone } = useUSPhoneFormat();
   const [formData, setFormData] = useState<UserFormData>({
     name: "",
     email: "",
@@ -18,7 +18,7 @@ const UserAppForm: React.FC = () => {
     address: "",
   });
 
-  const { data, execute, loading, error } = useApi<UserFormData>();
+  const { execute, loading, error } = useApi<UserFormData>();
 
   useEffect(() => {
     if (isEditMode && id) {
@@ -59,7 +59,7 @@ const UserAppForm: React.FC = () => {
           <h2><b>{isEditMode ? "Edit User" : "Add New User"}</b></h2>
           <TextField name="name" value={formData.name} onChange={handleChange} placeholder="Name" fullWidth margin="normal" />
           <TextField name="email" value={formData.email} onChange={handleChange} placeholder="Email" fullWidth margin="normal" />
-          <TextField name="phone" value={formData.phone} onChange={handleChange} placeholder="Phone" fullWidth margin="normal" />
+          <TextField name="phone" value={formatPhone(formData.phone)} onChange={handleChange}placeholder="Phone" fullWidth margin="normal" />
           <TextField name="address" value={formData.address} onChange={handleChange} placeholder="Address" fullWidth margin="normal" />
           <Button type="submit" variant="contained" color="primary" disabled={loading}>
             {isEditMode ? (loading ? "Updating..." : "Update") : loading ? "Submitting..." : "Submit"}

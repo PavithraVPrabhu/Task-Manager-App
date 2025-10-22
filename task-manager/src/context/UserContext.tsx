@@ -1,4 +1,3 @@
-// src/context/UserContext.tsx
 import React, { createContext, useState, useEffect, useContext } from "react";
 import type { UserFormData } from "../types/UserFormDataType";
 import { useApi } from "../hooks/useApi";
@@ -10,8 +9,9 @@ interface UserContextType {
   addUser: (user: UserFormData) => void;
   updateUser: (updatedUser: UserFormData) => void;
   refreshUsers: () => void;
-}
+   deleteUser: (id: string) => Promise<void>;
 
+}
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
 export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -36,10 +36,22 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
       prev.map((user) => (user.id === updatedUser.id ? updatedUser : user))
     );
   };
+const deleteUser = async (id: string) => {
+  try {
+    await fetch(`http://localhost:5000/users/${id}`, {
+      method: 'DELETE',
+    });
+    setUsers((prevUsers) => prevUsers.filter((user) => user.id !== id));
+  } catch (error) {
+    console.error('Error deleting user:', error);
+    throw error;
+  }
 
+
+ }
   return (
     <UserContext.Provider
-      value={{ users, loading, error, addUser, updateUser, refreshUsers }}
+      value={{ users, loading, error, addUser, updateUser, refreshUsers,deleteUser }}
     >
       {children}
     </UserContext.Provider>

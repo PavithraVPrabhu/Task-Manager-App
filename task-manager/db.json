@@ -1,13 +1,6 @@
 {
   "users": [
     {
-      "id": "1",
-      "name": "prince",
-      "email": "alice@example.com",
-      "phone": "1234567890",
-      "address": "City A"
-    },
-    {
       "id": "2",
       "name": "Bob",
       "email": "bob@example.com",
@@ -16,7 +9,7 @@
     },
     {
       "id": "3",
-      "name": "Charlie",
+      "name": "Charliee",
       "email": "charlie@example.com",
       "phone": "1112223333",
       "address": "City B"
@@ -111,6 +104,13 @@
       "email": "rose23@gmail.com",
       "phone": "9371856174",
       "address": "testaddress"
+    },
+    {
+      "id": "0f31",
+      "name": "pavithra",
+      "email": "pavi@gmail.com",
+      "phone": "9624417568",
+      "address": "sreenivas"
     }
   ]
 }

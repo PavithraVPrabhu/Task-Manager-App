@@ -45,7 +45,7 @@ const AppRoutes: React.FC = () => {
           element: isLoggedIn ? (
             <Navigate to="/dashboard" replace />
           ) : (
-            <UserDetails newUsers={submittedUsers} />
+            <UserDetails  />
           ),
         },
         {
@@ -53,7 +53,7 @@ const AppRoutes: React.FC = () => {
           element: isLoggedIn ? (
             <Navigate to="/dashboard" replace />
           ) : (
-            <UserAppForm addNewUser={addNewUser} />
+            <UserAppForm/>
           ),
         },
         {

@@ -5,9 +5,10 @@ import {
 } from "@mui/material";
 import { useUSPhoneFormat } from "../hooks/useUSPhoneFormat";
 import { useUserContext } from "../context/UserContext";
-
+import DeleteIcon from '@mui/icons-material/Delete';
+import { Icon } from '@mui/material';
 const UserDetails: React.FC = () => {
-  const { users, loading, error } = useUserContext();
+  const { users, loading, error, deleteUser } = useUserContext();
   const [page, setPage] = useState<number>(1);
   const { formatPhone } = useUSPhoneFormat();
   const limit = 5;
@@ -15,6 +16,17 @@ const UserDetails: React.FC = () => {
   const totalPages = Math.ceil(users.length / limit);
   const paginatedUsers = users.slice((page - 1) * limit, page * limit);
 
+  const handleDelete = async (id: string, name: string) => {
+    const confirmed = window.confirm(`Are you sure you want to delete ${name}?`);
+    if (confirmed) {
+      try {
+        await deleteUser(id);
+        alert("User deleted successfully!");
+      } catch {
+        alert("Failed to delete user. Please try again.");
+      }
+    }
+  };
   return (
     <div style={{ padding: 20, fontFamily: "Arial, sans-serif", width: "95vw" }}>
       <h2><b>User Details</b></h2>
@@ -32,6 +44,7 @@ const UserDetails: React.FC = () => {
                   <TableCell>Phone</TableCell>
                   <TableCell>Address</TableCell>
                   <TableCell>Edit</TableCell>
+                  <TableCell>Delete</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -44,6 +57,8 @@ const UserDetails: React.FC = () => {
                     <TableCell>
                       <Link href={`/users/${u.id}`}>Edit</Link>
                     </TableCell>
+                    <TableCell><DeleteIcon onClick={() => u.id && handleDelete(u.id, u.name)}
+                      sx={{ color: 'red' }}></DeleteIcon></TableCell>
                   </TableRow>
                 ))}
               </TableBody>
