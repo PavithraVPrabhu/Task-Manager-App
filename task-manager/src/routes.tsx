@@ -1,14 +1,18 @@
 import React, { useState } from "react";
-import { Navigate, useRoutes } from "react-router-dom";
+import {
+  Navigate,
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
 
 import Dashboard from "./pages/Dashboard";
 import BoardDetails from "./pages/BoardDetails";
 import Settings from "./pages/Settings";
-import MainLayout from "./components/layout/MainLayout";
+import AppLayout from "./components/layout/AppLayout";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import UserAppForm from "./pages/UserAppForm";
-import UserDetails from "./pages/UserDetails"
+import UserDetails from "./pages/UserDetails";
 import type { UserFormData } from "./types/UserFormDataType";
 
 const AppRoutes: React.FC = () => {
@@ -19,8 +23,9 @@ const AppRoutes: React.FC = () => {
     setSubmittedUsers((prev) => [...prev, user]);
   };
 
-  const routes = [
-    {
+  const router = createBrowserRouter([
+
+     {
       path: "/login",
       element: isLoggedIn ? <Navigate to="/dashboard" replace /> : <Login />,
     },
@@ -29,71 +34,61 @@ const AppRoutes: React.FC = () => {
       element: isLoggedIn ? <Navigate to="/dashboard" replace /> : <SignUp />,
     },
     {
-      path: "/userdetails",
-      element: isLoggedIn ? (
-        <Navigate to="/dashboard" replace />
-      ) : (
-        <MainLayout>
-        <UserDetails newUsers={submittedUsers} />
-        </MainLayout>
-      ),
-    },
-    {
-      path: "/users",
-      element: isLoggedIn ? (
-        <Navigate to="/dashboard" replace />
-      ) : (
-         <MainLayout>
-        <UserAppForm addNewUser={addNewUser} />
-         </MainLayout>
-      ),
-    },
-    {
-      path: "/users/:id",
-      element: isLoggedIn ? (
-        <Navigate to="/dashboard" replace />
-      ) : (
-        <MainLayout>
-        <UserAppForm />
-        </MainLayout>
-      ),
-    },
-    {
+      
       path: "/",
-      element: isLoggedIn ? (
-        <Navigate to="/dashboard" replace />
-      ) : (
-        <Navigate to="/login" replace />
-      ),
+      element: <AppLayout />,
+      
+      children: [
+       
+        {
+          path: "/userdetails",
+          element: isLoggedIn ? (
+            <Navigate to="/dashboard" replace />
+          ) : (
+            <UserDetails newUsers={submittedUsers} />
+          ),
+        },
+        {
+          path: "/users",
+          element: isLoggedIn ? (
+            <Navigate to="/dashboard" replace />
+          ) : (
+            <UserAppForm addNewUser={addNewUser} />
+          ),
+        },
+        {
+          path: "/users/:id",
+          element: isLoggedIn ? (
+            <Navigate to="/dashboard" replace />
+          ) : (
+            <UserAppForm />
+          ),
+        },
+        {
+          path: "/dashboard",
+          element: <Dashboard />,
+        },
+        {
+          path: "/boarddetails",
+          element: <BoardDetails />,
+        },
+        {
+          path: "/settings",
+          element: <Settings />,
+        },
+        {
+          index: true,
+          element: isLoggedIn ? (
+            <Navigate to="/dashboard" replace />
+          ) : (
+            <Navigate to="/login" replace />
+          ),
+        },
+      ],
     },
-    {
-      path: "/dashboard",
-      element: (
-        <MainLayout>
-          <Dashboard />
-        </MainLayout>
-      ),
-    },
-    {
-      path: "/boarddetails",
-      element: (
-        <MainLayout>
-          <BoardDetails />
-        </MainLayout>
-      ),
-    },
-    {
-      path: "/settings",
-      element: (
-        <MainLayout>
-          <Settings />
-        </MainLayout>
-      ),
-    },
-    // { path: "*", element: <Navigate to="/login" replace /> },
-  ];
+  ]);
 
-  return useRoutes(routes);
+  return <RouterProvider router={router} />;
 };
 
 export default AppRoutes;
@@ -109,124 +104,113 @@ export default AppRoutes;
 
 
 
-// import React ,{useState} from "react";
-// import { Navigate } from "react-router-dom";
+
+
+
+
+
+
+// import React, { Children, useState } from "react";
+// import { Navigate, useRoutes, Routes, Route, createBrowserRouter } from "react-router-dom";
+
 // import Dashboard from "./pages/Dashboard";
 // import BoardDetails from "./pages/BoardDetails";
 // import Settings from "./pages/Settings";
-// import MainLayout from "./components/layout/MainLayout";
+// import AppLayout from "./components/layout/AppLayout";
 // import Login from "./pages/Login";
 // import SignUp from "./pages/SignUp";
 // import UserAppForm from "./pages/UserAppForm";
+// import UserDetails from "./pages/UserDetails"
 // import type { UserFormData } from "./types/UserFormDataType";
-// import UserDetails from "./pages/UserDetails";
 
-// const isLoggedIn = !!localStorage.getItem("user");
-// interface UserDetailsProps {
-//   newUsers: UserFormData[];
-// }
-
-// interface AppRoute {
-
-//   path: string;
-//   element: React.ReactNode;
-//   protected?: boolean;
-// }
-
-// // // Protected Route Wrapper Component
-// // const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
-// //   const isAuthenticated = !!localStorage.getItem("user");
-// //   return isAuthenticated ? <>{children}</> : <Navigate to="/login" replace />;
-// // };
-
-//  const [submittedUsers, setSubmittedUsers] = useState<UserFormData[]>([]);
+// const AppRoutes: React.FC = () => {
+//   const [submittedUsers, setSubmittedUsers] = useState<UserFormData[]>([]);
+//   const isLoggedIn = !!localStorage.getItem("user");
 
 //   const addNewUser = (user: UserFormData) => {
 //     setSubmittedUsers((prev) => [...prev, user]);
 //   };
-// const routes: AppRoute[] = [
-
-//   { 
-//     path: "/login", 
-//     element: isLoggedIn ? <Navigate to="/dashboard" replace /> : <Login />, 
-//     protected: false 
-//   },
-//   { 
-//     path: "/signup", 
-//     element: isLoggedIn ? <Navigate to="/dashboard" replace /> : <SignUp />, 
-//     protected: false 
-//   },
-//   { 
-//     path: "/userdetails", 
-//     element: isLoggedIn ? <Navigate to="/dashboard" replace /> : <UserDetails newUsers={submittedUsers} />, 
-//     protected: false 
-//   },
-//  { 
-//     path: "/users", 
-//     element: isLoggedIn ? <Navigate to="/dashboard" replace /> : <UserAppForm addNewUser={addNewUser} />, 
-//     protected: false 
-//   },
-//  { 
-//     path: "/users/:id", 
-//     element: isLoggedIn ? <Navigate to="/dashboard" replace /> : <UserAppForm  />, 
-//     protected: false 
-//   },
+//   const router =createBrowserRouter([
+//     {
+//       path:"/",
+//       element:<AppLayout />,
+//       children:[
+//         {
+//           path:"/login",
+//           element:<Login />
+//         },
+//          {
+//           path:"/signup",
+//           element:<Login />
+//         },
+//          {
+//           path:"/userdetails",
+//           element: isLoggedIn ? (
+//     <Navigate to="/dashboard" replace />
+//     ) : (
+    
+//       <UserDetails newUsers={submittedUsers} />
  
-//   {
-//     path: "/",
-//     element: isLoggedIn ? <Navigate to="/dashboard" replace /> : <Navigate to="/login" replace />,
-//     protected: false,
-//   },
+//     )
+//         },
+//          {
+//           path:"/users",
+//         element:isLoggedIn ? (
+//     <Navigate to="/dashboard" replace />
+//     ) : (
+    
+//       <UserAppForm addNewUser={addNewUser} />
 
-//   {
-//     path: "/dashboard",
-//     element: (
-//       // <ProtectedRoute>
-//         <MainLayout>
-//           <Dashboard />
-//         </MainLayout>
-//       // </ProtectedRoute>
-//     ),
-//     protected: true,
-//   },
-//   {
-//     path: "/boarddetails",
-//     element: (
-//       // <ProtectedRoute>
-//         <MainLayout>
-//           <BoardDetails />
-//         </MainLayout>
-//       // </ProtectedRoute>
-//     ),
-//     protected: true,
-//   },
-//   {
-//     path: "/settings",
-//     element: (
-//       // <ProtectedRoute>
-//         <MainLayout>
-//           <Settings />
-//         </MainLayout>
-//       // </ProtectedRoute>
-//     ),
-//     protected: true,
-//   },
-// // {
-// //     path: "/users",
-// //     element: (
-// //       // <ProtectedRoute>
-// //         <MainLayout>
-// //           <Users />
-// //         </MainLayout>
-// //       // </ProtectedRoute>
-// //     ),
-// //     protected: true,
-// //   },
+//     )
+//         },
+//          {
+//           path:"/users/:id",
+//           element: isLoggedIn ? (
+//     <Navigate to="/dashboard" replace />
+//     ) : (
+    
+//       <UserAppForm />
+//     )
+//         },
+//          {
+//           path:"/",
+//        element: isLoggedIn ? (
+//     <Navigate to="/dashboard" replace />
+//     ) : (
+//     <Navigate to="/login" replace />
+//     )}
+//         ,
+//         {
+//           path:"/dashboard",
+//            element:(
+ 
+//       <Dashboard />
+    
+//     )
+//      },
+//      {
+//       path:"/boarddetails",
+//     element:(
+//       <BoardDetails />
+//     )
+//      },
+//      {
+//       path:"/settings",
+//     element:
+//       <BoardDetails />
+    
+//      },
+//       ]
+//     }
+//   ])
 
-//   { path: "*", element: <Navigate to="/login" replace /> },
-// ];
+// };
 
-// export default routes;
+// export default AppRoutes;
+
+
+
+
 
 
 
