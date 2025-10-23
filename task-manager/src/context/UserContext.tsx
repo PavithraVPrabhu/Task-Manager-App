@@ -1,17 +1,9 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
 import type { UserFormData } from "../types/UserFormDataType";
 import { useApi } from "../hooks/useApi";
+import type { UserContextType } from "../types/UserContextType";
 
-interface UserContextType {
-  users: UserFormData[];
-  loading: boolean;
-  error: string | null;
-  addUser: (user: UserFormData) => void;
-  updateUser: (updatedUser: UserFormData) => void;
-  refreshUsers: () => void;
-   deleteUser: (id: string) => Promise<void>;
 
-}
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
 export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -36,22 +28,21 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
       prev.map((user) => (user.id === updatedUser.id ? updatedUser : user))
     );
   };
-const deleteUser = async (id: string) => {
-  try {
-    await fetch(`http://localhost:5000/users/${id}`, {
-      method: 'DELETE',
-    });
-    setUsers((prevUsers) => prevUsers.filter((user) => user.id !== id));
-  } catch (error) {
-    console.error('Error deleting user:', error);
-    throw error;
-  }
 
+  const deleteUser = async (id: string) => {
+    try {
+      const result = await execute(`http://localhost:5000/users/${id}`, "DELETE");
+      setUsers((prevUsers) => prevUsers.filter((user) => user.id !== id));
+      console.log(setUsers);
+    } catch (error) {
+      console.error("Error deleting user:", error);
+      throw error;
+    }
+  };
 
- }
   return (
     <UserContext.Provider
-      value={{ users, loading, error, addUser, updateUser, refreshUsers,deleteUser }}
+      value={{ users, loading, error, addUser, updateUser, refreshUsers, deleteUser }}
     >
       {children}
     </UserContext.Provider>
@@ -63,3 +54,14 @@ export const useUserContext = () => {
   if (!context) throw new Error("useUserContext must be used within UserProvider");
   return context;
 };
+
+
+
+
+
+
+
+
+
+
+

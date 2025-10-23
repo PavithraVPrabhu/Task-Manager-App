@@ -43,13 +43,6 @@
       "address": "testing"
     },
     {
-      "id": "2662",
-      "name": "sample",
-      "email": "test@gmail.com",
-      "phone": "6754789238",
-      "address": "test"
-    },
-    {
       "id": "86a3",
       "name": "Riya",
       "email": "riya3@gmail.com",
@@ -57,24 +50,10 @@
       "address": "cross road 11"
     },
     {
-      "id": "77a2",
-      "name": "test",
-      "email": "test@gmail.com",
-      "phone": "8765748921",
-      "address": "test"
-    },
-    {
       "id": "3edc",
       "name": "asima",
       "email": "asima11@gmail.com",
       "phone": "4672819087",
-      "address": "test"
-    },
-    {
-      "id": "ffa2",
-      "name": "test",
-      "email": "test@gmail.com",
-      "phone": "8564746278",
       "address": "test"
     },
     {
@@ -104,13 +83,6 @@
       "email": "rose23@gmail.com",
       "phone": "9371856174",
       "address": "testaddress"
-    },
-    {
-      "id": "0f31",
-      "name": "pavithra",
-      "email": "pavi@gmail.com",
-      "phone": "9624417568",
-      "address": "sreenivas"
     }
   ]
 }

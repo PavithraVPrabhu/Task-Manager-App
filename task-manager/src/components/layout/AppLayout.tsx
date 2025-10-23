@@ -22,7 +22,7 @@ const AppLayout = () => {
       }}
     >
       <Navbar />
-      <Header />
+      {/* <Header /> */}
       <main
         style={{
           flex: 1,
@@ -33,7 +33,7 @@ const AppLayout = () => {
       >
         <Outlet />
       </main>
-      <Footer />
+      {/* <Footer /> */}
 
     </div>
   );
