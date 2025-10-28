@@ -3,8 +3,8 @@ import  { useContext } from "react";
 import { Outlet } from "react-router-dom";
 import Navbar from "./NavBar"
 import { ThemeContext } from "../../context/ThemeContext";
-import Header from "../layout/Header";
-import Footer from "../layout/Footer";
+// import Header from "../layout/Header";
+// import Footer from "../layout/Footer";
 const AppLayout = () => {
   const { state: themeState } = useContext(ThemeContext);
   const isDark = themeState.theme === "dark";

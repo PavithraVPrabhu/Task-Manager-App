@@ -14,7 +14,6 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const result = await execute("http://localhost:5000/users", "GET");
     if (result) setUsers(result);
   };
-
   useEffect(() => {
     refreshUsers();
   }, []);
