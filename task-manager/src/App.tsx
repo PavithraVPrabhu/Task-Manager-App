@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import AppRoutes from "./routes"
 import { ThemeProvider } from "./context/ThemeContext";
 import { UserProvider } from "./context/UserContext";
 
 const App: React.FC = () => {
+  useEffect(()=>{
+    localStorage.removeItem("user");
+  },[]
+  );
   return (
     <ThemeProvider>
       <UserProvider>

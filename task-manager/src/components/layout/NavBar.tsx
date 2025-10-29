@@ -1,14 +1,13 @@
-import  { useContext } from "react";
+import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ThemeContext } from "../../context/ThemeContext";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const { state: themeState, dispatch: themeDispatch } = useContext(ThemeContext);
-
   const handleLogout = () => {
-    localStorage.removeItem("user"); 
-    navigate("/login");              
+    localStorage.removeItem("user");
+    navigate("/login");
   };
 
   const toggleTheme = () => {
@@ -16,6 +15,7 @@ const Navbar = () => {
   };
 
   const isDark = themeState.theme === "dark";
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
 
   return (
     <nav style={{
@@ -28,44 +28,44 @@ const Navbar = () => {
       transition: "background-color 0.3s ease"
     }}>
       <div style={{ display: "flex", gap: "20px", alignItems: "center" }}>
-        <Link 
-          to="/dashboard" 
-          style={{ 
+        <Link
+          to="/dashboard"
+          style={{
             color: isDark ? "#fff" : "#000",
             textDecoration: "none"
           }}
         >
           Dashboard
         </Link>
-        <Link 
+        <Link
           to="/boardDetails"
-          style={{ 
+          style={{
             color: isDark ? "#fff" : "#000",
             textDecoration: "none"
           }}
         >
           Board details
         </Link>
-        <Link 
+        <Link
           to="/settings"
-          style={{ 
+          style={{
             color: isDark ? "#fff" : "#000",
             textDecoration: "none"
           }}
         >
           Settings
-        </Link> <Link 
+        </Link> <Link
           to="/users"
-          style={{ 
+          style={{
             color: isDark ? "#fff" : "#000",
             textDecoration: "none"
           }}
         >
           User Form
         </Link>
-        <Link 
+        <Link
           to="/userdetails"
-          style={{ 
+          style={{
             color: isDark ? "#fff" : "#000",
             textDecoration: "none"
           }}
@@ -73,9 +73,8 @@ const Navbar = () => {
           User Details
         </Link>
       </div>
-
       <div style={{ display: "flex", gap: "15px", alignItems: "center" }}>
-        <button 
+        <button
           onClick={toggleTheme}
           style={{
             padding: "8px 16px",
@@ -94,8 +93,8 @@ const Navbar = () => {
           {isDark ? "🌞" : "🌙"}
           <span>{isDark ? "Light" : "Dark"}</span>
         </button>
-
-        <button 
+        <p> {user?.name && <p>Welcome, {user.name}</p>}</p>
+        <button
           onClick={handleLogout}
           style={{
             padding: "8px 16px",
