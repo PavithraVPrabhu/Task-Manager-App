@@ -19,6 +19,7 @@ const SignUp = () => {
   };
 
   return (
+    <div style={{width: "95vw"}}>
     <Box
       sx={{
         display: "flex",
@@ -90,6 +91,7 @@ const SignUp = () => {
         </form>
       </Paper>
     </Box>
+    </div>
   );
 };
 

@@ -25,7 +25,6 @@ const AppRoutes: React.FC = () => {
     setSubmittedUsers((prev) => [...prev, user]);
   };
 
-  // ✅ Listen for login/logout changes (even from other tabs)
   useEffect(() => {
     const handleStorageChange = () => {
       setIsLoggedIn(!!localStorage.getItem("user"));
@@ -34,17 +33,15 @@ const AppRoutes: React.FC = () => {
     return () => window.removeEventListener("storage", handleStorageChange);
   }, []);
 
-  // ✅ Also update immediately after login/logout in the same tab
   useEffect(() => {
     const interval = setInterval(() => {
       const loggedIn = !!localStorage.getItem("user");
       setIsLoggedIn(loggedIn);
-    }, 500); // check every 0.5s
+    }, 500);
     return () => clearInterval(interval);
   }, []);
 
   const router = createBrowserRouter([
-    // Public routes
     {
       path: "/login",
       element: isLoggedIn ? <Navigate to="/dashboard" replace /> : <Login />,
@@ -54,7 +51,7 @@ const AppRoutes: React.FC = () => {
       element: isLoggedIn ? <Navigate to="/dashboard" replace /> : <SignUp />,
     },
 
-    // Protected routes
+    
     {
       path: "/",
       element: isLoggedIn ? <AppLayout /> : <Navigate to="/login" replace />,
@@ -69,7 +66,6 @@ const AppRoutes: React.FC = () => {
       ],
     },
 
-    // Fallback route
     {
       path: "*",
       element: <Navigate to={isLoggedIn ? "/dashboard" : "/login"} replace />,

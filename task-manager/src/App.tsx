@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { QueryClientProvider,QueryClient } from "@tanstack/react-query";
 import AppRoutes from "./routes"
 import { ThemeProvider } from "./context/ThemeContext";
 import { UserProvider } from "./context/UserContext";
@@ -8,12 +9,15 @@ const App: React.FC = () => {
     localStorage.removeItem("user");
   },[]
   );
+  const queryClient = new QueryClient();
   return (
+    <QueryClientProvider client={queryClient}>
     <ThemeProvider>
       <UserProvider>
         <AppRoutes />
       </UserProvider>
     </ThemeProvider>
+    </QueryClientProvider>
   );
 };
 
