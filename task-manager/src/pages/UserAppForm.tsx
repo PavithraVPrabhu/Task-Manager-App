@@ -4,7 +4,8 @@ import type { UserFormData } from "../types/UserFormDataType";
 import { Button, TextField, Paper } from "@mui/material";
 import { useApi } from "../hooks/useApi";
 import { useUserContext } from "../context/UserContext";
-import {useUSPhoneFormat} from "../hooks/useUSPhoneFormat"
+import {useUSPhoneFormat} from "../hooks/useUSPhoneFormat";
+
 const UserAppForm: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
