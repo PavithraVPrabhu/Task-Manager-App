@@ -24,7 +24,9 @@ const BoardDetails = () => {
   //   { id: 3, title: "Testing & QA", status: "In Progress", priority: "High", dueDate: "2025-11-07" },
 
   // ];
+
   const names = ["samplename1", "samplename2", "samplename3"]
+
   const tasks = [
     { id: 1, taskname: "seacrh query", taskpriority: "high" },
     { id: 2, taskname: "quick search", taskpriority: "high" }

@@ -6,6 +6,7 @@ import List from "../components/layout/ReusableListComponent";
 import ReusableTableComponent from "../components/layout/ReusableTableComponent";
 import type { Column } from "../components/layout/ReusableTableComponent";
 const Dashboard = () => {
+  
   type Todo = {
     id: number;
     todo: string;
@@ -30,6 +31,7 @@ const Dashboard = () => {
   ];
 
   const { state: themeState } = useContext(ThemeContext);
+
   const names = ["a", "b", "c"];
   const { isPending, error, data } = useQuery({
     queryKey: ['todos'],
@@ -62,18 +64,18 @@ const Dashboard = () => {
 
 
         ))}
-         </div>
+      </div>
 
-        <List
-          items={names}
-          renderItem={(name) => <span>{name}</span>}
+      <List
+        items={names}
+        renderItem={(name) => <span>{name}</span>}
 
-        />
-   
-        <div>
+      />
+
+      <div>
         <ReusableTableComponent data={todos} columns={columns}></ReusableTableComponent>
-</div>
-     
+      </div>
+
     </div >
   );
 };

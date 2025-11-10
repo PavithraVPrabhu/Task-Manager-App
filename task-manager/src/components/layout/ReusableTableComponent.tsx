@@ -2,7 +2,7 @@ import React from "react";
 import { Table, TableHead, TableRow, TableCell, TableBody } from "@mui/material";
 
 export type Column<T> = {
-  key: keyof T; 
+  key: keyof T;
   header: string;
   render?: (item: T) => React.ReactNode;
 };
