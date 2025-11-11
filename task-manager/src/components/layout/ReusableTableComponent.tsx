@@ -7,10 +7,39 @@ export type Column<T> = {
   render?: (item: T) => React.ReactNode;
 };
 
+// interface dummyInterface{
+// abc:string,
+// id:number
+// }
+
+// interface dummyInterface2{
+// name:string,
+// age:number
+// }
+
+// const sample : dummyInterface[]=[
+//   {
+//     abc:"sddc",
+//     id:123
+//   }
+// ]
+
+// const sample2 : dummyInterface2[]=[
+//   {
+//     age:10,name:"Test"
+//   }
+// ]
 type TableProps<T> = {
   data: T[];
   columns: Column<T>[];
 };
+//  const name :TableProps <dummyInterface>={
+//   data: sample,
+//  }
+
+//  const obj :TableProps <dummyInterface2>={
+//   data: sample2,
+//  }
 
 function ReusableTableComponent<T>({ data, columns }: TableProps<T>) {
   return (

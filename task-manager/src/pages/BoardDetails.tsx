@@ -6,6 +6,8 @@ import { useCounterStore } from '../store'
 import List from "../components/layout/ReusableListComponent";
 import ReusableTableComponent from '../components/layout/ReusableTableComponent'
 import type { Column } from '../components/layout/ReusableTableComponent'
+import type { Task } from "../types/Task";
+import type { Name } from "../types/NameType";
 const BoardDetails = () => {
 
   const { state: themeState, dispatch: themeDispatch } = useContext(ThemeContext)
@@ -24,19 +26,27 @@ const BoardDetails = () => {
   //   { id: 3, title: "Testing & QA", status: "In Progress", priority: "High", dueDate: "2025-11-07" },
 
   // ];
+  // interface Task{
+  //   id:number,
+  //   taskname:string,
+  //   taskpriority:string
+  // }
 
-  const names = ["samplename1", "samplename2", "samplename3"]
 
-  const tasks = [
+  const names: Name[] = [{
+    name: "abc"
+  }]
+
+  const tasks: Task[] = [
     { id: 1, taskname: "seacrh query", taskpriority: "high" },
     { id: 2, taskname: "quick search", taskpriority: "high" }
     , { id: 3, taskname: "fix button", taskpriority: "low" }
 
   ];
 
-  const taskColumns: Column<typeof tasks[0]>[] = [
-    { key: "id", header: "ID" },
-    { key: "taskname", header: "Task Name" },
+  const taskColumns: Column<Task>[] = [
+    { key: "id", header: "ID", render: (tasks) => <b>{tasks.id}</b> },
+    { key: "taskname", header: "Task Name", render: (tasks) => <span style={{ color: "red" }}>{tasks.taskname}</span> },
     { key: "taskpriority", header: "Task Priority" },
   ];
 
@@ -56,7 +66,9 @@ const BoardDetails = () => {
       <DragAndDrop ></DragAndDrop>
       <ReusableTableComponent data={tasks} columns={taskColumns}></ReusableTableComponent>
       <List items={names}
-        renderItem={(name) => <span>{name}</span>}></List>
+        renderItem={(item: Name) => <span>{item.name}</span>}>
+
+      </List>
     </div>
   )
 }
