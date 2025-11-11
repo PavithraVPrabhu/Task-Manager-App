@@ -54,7 +54,6 @@ const BoardDetails = () => {
       <button onClick={decrement}>Decrement</button>
 
       <DragAndDrop ></DragAndDrop>
-      {/* <TaskTable tasks={sampleTasks}></TaskTable> */}
       <ReusableTableComponent data={tasks} columns={taskColumns}></ReusableTableComponent>
       <List items={names}
         renderItem={(name) => <span>{name}</span>}></List>
